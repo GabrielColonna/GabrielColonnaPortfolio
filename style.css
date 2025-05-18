@@ -1,1 +1,382 @@
-/* Add you CSS here */
+/* Body styles */
+body {
+  /* Set the background color for the whole page */
+  background-color: #000;
+}
+
+  
+canvas#matrixCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Section titles centered */
+h1 {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 32px;
+  font-size: 2.2em;
+  background: #fff;
+  border: 2px solid #c20000;
+  display: inline-block; /* Only as wide as needed */
+  padding: 8px 24px; /* Add a little space around the text */
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  /* Center the h1 horizontally */
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+}
+
+.top-header h1 {
+  /* Header section name stays big, white, and not boxed */
+  background: none;
+  border: none;
+  display: block;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  left: auto;
+  transform: none;
+  position: static;
+  color: #fff;
+  font-size: 3em;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+/* Center the h1 horizontally */
+.section-title-wrapper {
+  text-align: center;
+  width: 100%;
+}
+
+/* Info List and Box styles */
+.info-list {
+  /* Arrange boxes in a row with equal width */
+  display: flex;
+  flex-direction: row;
+  gap: 32px; /* More space between boxes */
+  max-width: 1400px; /* Wider row for bigger boxes */
+  margin: 0 auto 48px auto;
+  justify-content: center;
+}
+
+.info-box {
+  /* Each box has a border and padding and takes equal space */
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 120px; /* Make boxes shorter for a more rectangular look */
+  max-width: 400px; /* Prevent boxes from getting too wide */
+  border: 2px solid #c20000;
+  border-radius: 18px;
+  background: #fff;
+  padding: 24px 20px; /* Reduced padding for less height */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-title {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.info-sentence {
+  /* Hide the sentence by default */
+  opacity: 0;
+  transition: opacity 0.3s;
+  height: 0;
+  overflow: hidden;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.info-box:hover .info-sentence {
+  /* Show the sentence on hover */
+  opacity: 1;
+  height: auto;
+  overflow: visible;
+}
+
+.info-btn {
+  display: block;
+  margin: 0 auto;
+  margin-top: auto;
+  padding: 10px 24px;
+  background-color: #c20000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.info-btn:hover {
+  background-color: #a00000;
+}
+
+.profile-pic {
+  /* Style for the profile picture */
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-right: 32px;
+  border: 3px solid #fff;
+  background: #fff;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.top-header {
+  text-align: left;
+  background-color: #c20000;
+  padding: 60px 0px 100px 0px;
+  margin-bottom: 60px;
+  border-bottom: 2px solid #333;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.header-text {
+  flex: 1;
+}
+
+.header-text h1 {
+  font-size: 3em;
+  margin-bottom: 18px;
+  color: #fff;
+}
+
+.header-text p {
+  font-size: 1.4em;
+  color: #fff;
+  margin: 0;
+}
+
+/* UCF box image covers the entire box, text appears on hover, nothing else visible */
+.ucf-img-container {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 18px;
+  z-index: 1;
+}
+
+.info-box.ucf-box {
+  position: relative;
+  min-height: 220px;
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  display: block;
+}
+
+.ucf-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+  transition: opacity 0.3s;
+  z-index: 1;
+  display: block;
+}
+
+.ucf-info-sentence {
+  min-width: 260px; /* Wider than default */
+  max-width: 340px; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  background: rgba(0,0,0,0.7);
+  padding: 18px 24px;
+  border-radius: 10px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 2;
+  font-size: 1.1em;
+}
+
+.info-box.ucf-box:hover .ucf-img {
+  opacity: 0;
+}
+.info-box.ucf-box:hover .ucf-info-sentence {
+  opacity: 1;
+}
+.info-box.ucf-box:hover {
+  background: #B1A170;
+}
+
+/* FIU box image covers the entire box, text appears on hover, nothing else visible */
+.info-box.fiu-box {
+  position: relative;
+  min-height: 220px;
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  display: block;
+}
+
+.fiu-img-container {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 18px;
+  z-index: 1;
+}
+
+.fiu-img {
+  width: 120%; /* Zoom out the image a bit by making it larger than the container */
+  height: 120%;
+  object-fit: cover;
+  border-radius: 18px;
+  transition: opacity 0.3s;
+  z-index: 1;
+  display: block;
+  position: absolute;
+  top: -10%;
+  left: -10%;
+}
+
+.fiu-info-sentence {
+  min-width: 260px; /* Wider than default */
+  max-width: 340px; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  background: rgba(0,0,0,0.7);
+  padding: 18px 24px;
+  border-radius: 10px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 2;
+  font-size: 1.1em;
+}
+
+.info-box.fiu-box:hover .fiu-img {
+  opacity: 0;
+}
+.info-box.fiu-box:hover .fiu-info-sentence {
+  opacity: 1;
+}
+.info-box.fiu-box:hover {
+  background: #081E3F;
+}
+
+/* Royal box:*/
+.info-box.rcc-box {
+  position: relative;
+  min-height: 220px;
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  display: block;
+}
+
+.rcc-img-container {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 18px;
+  z-index: 1;
+}
+
+.rcc-img {
+  width: 120%; /* Zoom out the image a bit by making it larger than the container */
+  height: 120%;
+  object-fit: cover;
+  border-radius: 18px;
+  transition: opacity 0.3s;
+  z-index: 1;
+  display: block;
+  position: absolute;
+  top: -10%;
+  left: -10%;
+}
+
+.rcc-info-sentence {
+  /* Make the info text box wider for Royal Caribbean */
+  min-width: 260px; /* Wider than default */
+  max-width: 340px; /* Prevent it from getting too wide */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  background: rgba(0,0,0,0.7);
+  padding: 18px 24px;
+  border-radius: 10px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 2;
+  font-size: 1.1em;
+}
+
+.info-box.rcc-box:hover .rcc-img {
+  opacity: 0;
+}
+.info-box.rcc-box:hover .rcc-info-sentence {
+  opacity: 1;
+}
+.info-box.rcc-box:hover {
+  background: #ffffff;
+}
+
+/* Make flag images in the Trilingual box appear side by side */
+.flag-row img {
+  display: inline-block; /* Show images next to each other */
+  margin-right: 8px;     /* Add a little space between flags */
+  vertical-align: middle; /* Align them nicely */
+}
+
+/* Remove the margin on the last image for a clean look */
+.flag-row img:last-child {
+  margin-right: 0;
+}
+
+
